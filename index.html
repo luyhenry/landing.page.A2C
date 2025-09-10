@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>A2C Engenharia — Exelência & Confiabilidade</title>
+  <meta name="description" content="{{SEO_DESCRIPTION}}" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* =============================================
+       🔧 PARAMETROS PRINCIPAIS — personalize aqui
+       Troque os valores de :root para alterar cores,
+       espaçamentos e identidade visual global.
+       ============================================= */
+    :root {
+      /* Cores da marca */
+      --brand: #2a79ff;         /* cor primária */
+      --brand-600: #1f5dcc;     /* variação escura */
+      --accent: #00b894;        /* cor de destaque opcional */
+      --bg: #ffffff;            /* fundo padrão */
+      --bg-alt: #f6f8fb;        /* fundos de seção */
+      --text: #0f172a;          /* texto principal */
+      --muted: #475569;         /* texto secundário */
+      --border: #e2e8f0;        /* linhas e bordas sutis */
+
+      /* Layout e ritmo */
+      --container: 1200px;      /* largura máxima do conteúdo */
+      --radius: 14px;           /* raio de bordas padrão */
+      --gap: 24px;              /* espaçamento base */
+      --shadow: 0 10px 30px rgba(2, 6, 23, 0.08);
+    }
+
+    /* Reset moderno e tipografia */
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.6;
+    }
+    img { max-width: 100%; height: auto; display: block; }
+    a { color: var(--brand); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* Utilitários */
+    .container { max-width: var(--container); margin: 0 auto; padding: 0 20px; }
+    .btn { display: inline-flex; align-items: center; gap: 10px; padding: 12px 18px; border-radius: var(--radius); font-weight: 600; border: 1px solid transparent; cursor: pointer; transition: transform .06s ease, box-shadow .2s ease, background .2s ease; }
+    .btn-primary { background: var(--brand); color: #fff; box-shadow: var(--shadow); }
+    .btn-primary:hover { background: var(--brand-600); transform: translateY(-1px); }
+    .btn-outline { background: #fff; border-color: var(--border); color: var(--text); }
+
+    .badge { display: inline-block; padding: 6px 10px; background: rgba(42,121,255,.1); color: var(--brand-600); border: 1px solid rgba(42,121,255,.2); border-radius: 999px; font-size: 12px; font-weight: 600; }
+
+    /* ========================= NAVBAR ========================= */
+    header.site-header { position: sticky; top: 0; z-index: 50; background: rgba(255,255,255,.85); backdrop-filter: saturate(180%) blur(10px); border-bottom: 1px solid var(--border); }
+    .nav { display: flex; align-items: center; justify-content: space-between; min-height: 72px; }
+    .brand { display: flex; align-items: center; gap: 12px; }
+    .brand img.logo { width: 200px; height: 200px; border-radius: 8px; object-fit: cover; }
+    .brand .brand-text { font-weight: 700; letter-spacing: .2px; }
+    nav ul { list-style: none; display: flex; gap: 22px; margin: 0; padding: 0; }
+    nav a { color: var(--text); font-weight: 500; }
+
+    /* Menu mobile (checkbox hack, sem JS) */
+    #menu-toggle { display: none; }
+    .menu-btn { display: none; gap: 8px; align-items: center; padding: 10px 14px; border: 1px solid var(--border); border-radius: 10px; }
+    .menu { display: flex; align-items: center; gap: 22px; }
+    @media (max-width: 900px) {
+      .menu-btn { display: inline-flex; }
+      .menu { display: none; position: absolute; top: 72px; left: 0; right: 0; background: #fff; border-bottom: 1px solid var(--border); padding: 16px 20px; }
+      #menu-toggle:checked ~ .menu { display: grid; gap: 12px; }
+    }
+
+    /* ========================= HERO ========================= */
+    .hero { background: linear-gradient(180deg, var(--bg) 0%, var(--bg-alt) 100%); padding: 64px 0 32px; }
+    .hero-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; align-items: center; gap: 40px; }
+    .hero h1 { font-size: clamp(32px, 5vw, 52px); line-height: 1.1; margin: 0 0 16px; }
+    .hero p.lead { font-size: clamp(16px, 2.3vw, 20px); color: var(--muted); margin: 0 0 28px; }
+    .hero .card { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; box-shadow: var(--shadow); }
+
+    /* ========================= SEÇÕES ========================= */
+    section { padding: 72px 0; }
+    .section-title { display: flex; align-items: center; justify-content: space-between; gap: 20px; margin-bottom: 28px; }
+    .section-title h2 { margin: 0; font-size: clamp(22px, 3.5vw, 34px); }
+    .muted { color: var(--muted); }
+
+    /* Cards de serviços */
+    .grid { display: grid; gap: 20px; }
+    .grid-3 { grid-template-columns: repeat(3, 1fr); }
+    .grid-2 { grid-template-columns: repeat(2, 1fr); }
+    @media (max-width: 900px) { .grid-3 { grid-template-columns: 1fr; } .grid-2 { grid-template-columns: 1fr; } .hero-grid { grid-template-columns: 1fr; } }
+
+    .card { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 22px; box-shadow: var(--shadow); }
+    .card h3 { margin: 0 0 8px; font-size: 20px; }
+    .card p { margin: 0; color: var(--muted); }
+
+    /* Bloco de números/estatísticas */
+    .stats { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); padding: 24px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+    .stat { text-align: center; }
+    .stat .num { font-size: clamp(24px, 4.5vw, 38px); font-weight: 800; color: var(--brand); }
+    .stat .label { color: var(--muted); font-size: 14px; }
+    @media (max-width: 900px) { .stats { grid-template-columns: repeat(2, 1fr); } }
+
+    /* Bloco de certificações/selo */
+    .awards { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .awards .highlight { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 22px; box-shadow: var(--shadow); }
+    @media (max-width: 900px) { .awards { grid-template-columns: 1fr; } }
+
+    /* Lista de posts */
+    .posts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .post { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; display: grid; }
+    .post .content { padding: 16px; }
+    .post h3 { margin: 0 0 8px; font-size: 18px; }
+    .post time { color: var(--muted); font-size: 13px; }
+    @media (max-width: 900px) { .posts { grid-template-columns: 1fr; } }
+
+    /* CTA / Contato rápido */
+    .cta { background: linear-gradient(180deg, var(--bg-alt) 0%, #fff 100%); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .cta .card { display: grid; gap: 14px; }
+
+    /* Rodapé */
+    footer { background: #0b1220; color: #d1d5db; }
+    footer .columns { display: grid; grid-template-columns: 1.1fr .9fr; gap: 24px; padding: 40px 0; }
+    footer a { color: #e5e7eb; }
+    footer .small { color: #9ca3af; font-size: 13px; }
+    @media (max-width: 900px) { footer .columns { grid-template-columns: 1fr; } }
+
+    /* Aviso de cookies (opcional) */
+    .cookies { position: fixed; inset: auto 20px 20px 20px; background: #ffffff; border: 1px solid var(--border); border-radius: 12px; padding: 14px 16px; box-shadow: var(--shadow); max-width: 560px; display: none; }
+    .cookies.show { display: grid; gap: 6px; }
+    .cookies .actions { display: flex; gap: 10px; }
+  </style>
+</head>
+<body>
+  <!-- =========================================================
+       HEADER / NAV
+       Dicas:
+       - Substitua {{LOGO_SRC}} por seu arquivo.
+       - Atualize os links de navegação.
+       ========================================================= -->
+  <header class="site-header">
+    <div class="container nav">
+      <div class="brand">
+        <img class="logo" src="images/LOGO.png" alt="images/LOGO.png" />
+        <span class="brand-text">A2C Engenharia</span>
+      </div>
+
+      <label for="menu-toggle" class="menu-btn" aria-label="Abrir menu">☰ Menu</label>
+      <input type="checkbox" id="menu-toggle" aria-hidden="true" />
+
+      <nav class="menu" aria-label="Navegação primária">
+        <ul>
+          <li><a href="#sobre">A2CENGENHARIA </a></li>
+          <li><a href="#servicos">Serviços</a></li>
+          <li><a href="#clientes">Clientes</a></li>
+          <li><a href="#parceiros">Parceiros</a></li>
+          <li><a href="#contato">Contatos</a></li>
+        </ul>
+        <a class="btn btn-primary" href="https://wa.me/5519999299580">Fale com especialistas</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- =========================================================
+       HERO
+       - Edite o H1, o parágrafo e o CTA conforme sua proposta.
+       - Troque a imagem do lado direito por uma foto/ilustração.
+       ========================================================= -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        
+        <h1>A2C Engenharia</h1> 
+							<p> Cuidamos da tecnologia que cuida da vida animal 🐾
+								Manutenção especializada em equipamentos veterinários para garantir segurança, 
+								precisão e confiança em cada atendimento. Sua clínica sempre pronta para oferecer 
+								o melhor aos pacientes.</p>
+							 
+        <p class="lead">Excelência técnica | Confiabilidade | Normas Nacionais</p>
+        <div style="display:flex; gap:12px; flex-wrap:wrap;">
+          <a class="btn btn-primary" href="#sobre2">Sobre Nós</a>
+          <a class="btn btn-outline" href="#servicos">Ver serviços</a>
+        </div>
+      </div>
+      <div class="card">
+        <img src="images/ilustrativa.jpg" alt="images/ilustrativa.jpg" />
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       SOBRE / PROPOSIÇÃO DE VALOR
+       ========================================================= -->
+  <section id="sobre">
+    <div class="container">
+
+      
+      <div class="section-title">
+        <h2>Gestão, Calibração e Manutenção</h2>
+        <span class="muted">Soluções completas para segurança, eficiência e qualidade.</span>
+      </div>
+      <div class="grid grid-3">
+        <div class="card">
+          <h3>Gestão de Tecnologias</h3>
+          <p>Inventário, ciclo de vida e atendimento rápido.</p>
+        </div>
+        <div class="card">
+          <h3>Manutenção & Metrologia</h3>
+          <p>Planos preventivos, corretivos e calibração conforme normas técnicas.</p>
+        </div>
+        <div class="card">
+          <h3>Engenharia Elétrica</h3>
+          <p>Manutenção e planejamento elétrico com foco em segurança, geração e economia de energia.</p>
+        </div>
+		</div>
+		
+		
+      </div>
+    </div>
+  </section>
+
+<!-- =========================================================
+       SERVIÇOS — detalhe em 2 colunas
+       ========================================================= -->
+	   
+ <section id="sobre2" class="sobre">
+ <div class="container">
+		<div class="section-title">
+        <h2>QUEM SOMOS?</h2>
+        <span class="muted"></span>
+      </div>
+    <div class="container">
+      <div class="card">
+        <h2>Quem Somos!</h2>
+        <p class="muted">Somos uma empresa especializada na manutenção de equipamentos veterinários, 
+		dedicada a garantir o melhor para clínicas, hospitais veterinários e, principalmente, para 
+		os pacientes que dependem desses cuidados. Nosso compromisso é assegurar que cada equipamento funcione com máxima precisão,
+		oferecendo mais segurança e confiança no atendimento.</p>
+		<h2> Por que a manutenção regular é essencial?</h2>
+		<p class="muted">Equipamentos veterinários são fundamentais para diagnósticos rápidos e tratamentos eficazes. 
+		Quando passam por manutenções periódicas, reduz os riscos de falhas e aumenta a durabilidade do equipamento garantindo 
+		resultados confiáveis. Trazendo uma maior eficiência para a clínica: sem imprevistos ou paradas inesperadas garantindo segurança para os pacientes atraves de diagnósticos precisos e tratamentos bem conduzidos.
+		sem falar na economia para a clinica, evitando reparos emergenciais e prolongando a vida útil dos equipamentos. </p>
+        
+      
+      </div>
+    </div>
+	</div>
+	
+  </section>
+
+
+
+
+<section id="clientes">
+    <div class="container">
+      <div class="section-title">
+        <h2>Clientes</h2>
+        <span class="muted"></span>
+      </div>
+	  
+		<div class="grid grid-3">
+	  
+			<div class="card">
+			<a href="https://www.hospitalvetrc.com.br/" > <img class="logo" src="images\logohv24.webp" alt="LOGO HV24" width="100" height="100"> </a>
+			<h3>Hospital Veterinário 24Horas</h3>
+			<p><strong> Endereço </strong>R. 9, 248 - Centro, Rio Claro - SP, 13500-145.</p>
+			</div>
+      
+	  
+			<div class="card">
+			  <a href="https://www.instagram.com/bemmequervet/"><img class="logo" src="images\logobemequer.PNG" alt="LOGO Bem Me Quer" width="100" height="100">  </a>
+			<h3>Clinica Veterinária Bem Me Quer</h3>
+			<p><strong>Endereço:</strong> Rua 15, Av. Cidade Claret, 1696, Rio Claro - SP, 13503-191.</p>
+		
+        
+          
+        
+			</div>
+      
+			<div class="card">
+			<a href="https://www.google.com/maps/dir//Av.+22,+659+-+Santana,+Rio+Claro+-+SP,+13500-510/@-22.4014418,-47.6479978,22624m/data=!3m1!1e3!4m8!4m7!1m0!1m5!1m1!1s0x94c7dbae09b33c5b:0xd35424f97640c820!2m2!1d-47.5656567!2d-22.401312?entry=ttu&g_ep=EgoyMDI1MDkwNy4wIKXMDSoASAFQAw%3D%3D"> <img class="logo" src="images\logoriovet.PNG" alt="LOGO RioVet" width="100" height="100"> </a>
+			<h3>Clinica Veterinária RioVet</h3>
+			<p><strong>Endereço:</strong>Av. 22, 659 - Santana, Rio Claro - SP, 13500-510.</p>
+			</div>
+			<div class="card">
+			<a href="https://www.instagram.com/anymalys/" > <img class="logo" src="images\logoanymalys.jpg" alt="LOGO Anymalys" width="100" height="100"> </a>
+			<h3>Clinica Veterinária Anymalys</h3>
+			<p> <strong>Endereço:</strong>Av. Laranjeiras, 602 - Vila Queiroz, Limeira - SP, 13485-020</p>
+			</div>
+			
+			<div class="card">
+			<a href="https://www.instagram.com/veterinariabichosolto/"> <img class="logo" src="images\logoBICHOSOLTO.png" alt="LOGO BichoSolto" width="170" height="100"> </a>
+			<h3>Clinica Veterinária Bicho Solto</h3>
+			<p> <strong> Endereço:</strong> R. 3, 51 - Cidade Jardim, Rio Claro - SP, 13501-040</p>
+			</div>
+			
+		
+			<div class="card">
+			<a href="https://www.instagram.com/clinicavetpatasepelos/"> <img class="logo" src="images\logoentrepatasepelos.jpg" alt="LOGO EntrePatasEPelos"  width="100" height="100"> </a>
+			<h3>  Clinica Veterinária Entre patas e pelos</h3>
+			<p><strong> Endereço:</strong> Avenida 40, 836 entre ruas 6 e 7 - Vila Operaria, Rio Claro - SP, 13504-140.</p>
+			</div>
+		</div>
+ 
+	</div>
+  </section>
+
+
+
+
+  <!-- =========================================================
+       SERVIÇOS — detalhe em 2 colunas
+       ========================================================= -->
+  <section id="servicos" style="background: var(--bg-alt);">
+    <div class="container">
+      <div class="section-title">
+        <h2>Serviços</h2>
+        <!-- <a class="btn btn-outline" href="#card">Ver todos</a> -->
+      </div>
+      <div class="grid grid-2">
+        <div class="card">
+          <h3>Engenharia Clínica</h3>
+          <ul>
+            <li>Gestão de tecnologias</li>
+            <li>Manutenção de equipamentos médicos</li>
+            <li>Metrologia</li>
+            <li>Incorporação de novas tecnologias</li>
+			 <li>Consultoria</li> 
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Engenharia Predial</h3>
+          <ul>
+            <li>Inspeção de sistemas elétricos e manutenções</li>
+            <li>Geração e economia de energia</li>
+            <li>Manutenção, reformas e ampliações</li>
+            <li>Planos de continuidade e segurança</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       NÚMEROS / INDICADORES — edite os valores
+       ========================================================= -->
+  <!-- <section id="indicadores">
+    <div class="container">
+      <div class="section-title">
+        <h2>Expertise em todo o território nacional</h2>
+        <span class="muted">Edite os números abaixo no HTML conforme sua realidade.</span>
+      </div>
+      <div class="stats">
+        <div class="stat">
+          <div class="num">{{INDICADOR_1_NUM}}</div>
+          <div class="label">Unidades de saúde atendidas</div>
+        </div>
+        <div class="stat">
+          <div class="num">{{INDICADOR_2_NUM}}</div>
+          <div class="label">Serviços clínicos executados</div>
+        </div>
+        <div class="stat">
+          <div class="num">{{INDICADOR_3_NUM}}</div>
+          <div class="label">Serviços hospitalares</div>
+        </div>
+        <div class="stat">
+          <div class="num">{{INDICADOR_4_NUM}}</div>
+          <div class="label">Equipamentos monitorados</div>
+        </div>
+      </div>
+      <p class="muted" style="margin-top:10px;">*Atualize o período: {{INDICADORES_PERIODO}}</p>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       CERTIFICAÇÕES / DIFERENCIAIS — use logos reais se tiver
+       ========================================================= 
+  <section id="diferenciais" style="background: var(--bg-alt);">
+    <div class="container">
+      <div class="awards">
+        <div class="highlight">
+          <h3>Qualidade reconhecida</h3>
+          <p class="muted">Inclua selos/certificações (ex.: ISO, ONA) se aplicável ao seu negócio.</p>
+          <div class="grid grid-3" style="align-items:center;">
+            <img src="{{CERT_1_LOGO}}" alt="Certificação 1" />
+            <img src="{{CERT_2_LOGO}}" alt="Certificação 2" />
+            <img src="{{CERT_3_LOGO}}" alt="Certificação 3" />
+          </div>
+        </div>
+        <div class="highlight">
+          <h3>Depoimentos de clientes</h3>
+          <p class="muted">Adicione 1–3 citações curtas de clientes satisfeitos.</p>
+          <blockquote>“{{QUOTE_1}}” — <strong>{{QUOTE_1_AUTHOR}}</strong></blockquote>
+          <blockquote>“{{QUOTE_2}}” — <strong>{{QUOTE_2_AUTHOR}}</strong></blockquote>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       BLOG (opcional) — cards simples
+       ========================================================= -->
+  <section id="parceiros"> 
+   <div class="container">
+      <div class="section-title">
+        <h2>Nossos Parceiros</h2>
+        <!-- <a class="btn btn-outline" href="https://adotei.pet/">Conhecer Parceiro</a> -->
+      </div>
+      <div class="parceiros">
+        <article class="post">
+          <a href="https://adotei.pet/"> <img  src="images/img1.webp" alt="ADOTEI.PETS" /> </a>
+          <div class="content" href "https://adotei.pet/" alt="SITE ADOTEI.PET">
+		  
+          </div>
+        </article>
+        
+       
+      </div>
+    </div>
+  </section> 
+  
+  <!-- =========================================================
+       CTA / CONTATO RÁPIDO
+       ========================================================= -->
+  <section id="contato" class="cta">
+    <div class="container">
+      <div class="card">
+        <h2>Tem algo para nos contar? Nós queremos ouvir.</h2>
+        <p class="muted">Use o botão abaixo para falar com o nosso time. Também atendemos por telefone e e-mail.</p>
+        <div style="display:flex; gap:12px; flex-wrap:wrap;">
+          <a class="btn btn-primary" href="https://wa.me/5519999299580">Falar no WhatsApp</a>
+          <a class="btn btn-outline" href="mailto:casturino.eng.eletrica@hotmail.com">Enviar e-mail</a>
+          <a class="btn btn-outline" href="tel:19 999299580">Ligar agora</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       FOOTER — endereço e redes sociais
+       ========================================================= -->
+  <footer>
+    <div class="container columns">
+      <div>
+        <h3 style="margin-top:0; color:#fff;">Sede A2C Engenharia</h3>
+        <p class="small">
+          Segunda-feira a Sexta-feira de 8h às 18h <br/>
+          <strong>Comercial:</strong><a href="https://wa.me/5519999299580"> +55 (19) 9 9929-9580 </a><br/>
+          <strong>E-mail:</strong> <a href="mailto:casturino.eng.eletrica@hotmail.com">casturino.eng.eletrica@hotmail.com</a><br/>
+          <strong>Endereço:</strong> Rua: Angelo Scaglia, Nº301, JD. Das Palmeiras, Ipeúna-SP
+        </p>
+      </div>
+      <div>
+        <h3 style="margin-top:0; color:#fff;">Conecte-se</h3>
+        <p class="small">
+          <a href="https://instagram.com/a2cengenharia/">Instagram</a> ·
+          <a href="{{LINKEDIN}}">LinkedIn</a> ·
+          <a href="{{FACEBOOK}}">Facebook</a>
+        </p>
+        <p class="small">© <span id="year"></span> A2C Engenharia. Todos os direitos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- =========================================================
+       Aviso de cookies (opcional). Para habilitar, troque
+       display para .show via atributo data-enable-cookies="true"
+       no body ou remova o bloco se não precisar.
+       ========================================================= -->
+  <div class="cookies" id="cookieBox">
+    <strong>Usamos cookies</strong>
+    <span class="small" style="color:var(--muted)">Utilizamos cookies para melhorar sua experiência.</span>
+    <div class="actions">
+      <button class="btn btn-primary" id="acceptCookies">Aceitar</button>
+      <a class="btn btn-outline" href="{{COOKIES_POLICY_URL}}">Política de cookies</a>
+    </div>
+  </div>
+
+  <script>
+    // Ano automático no rodapé
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Cookie banner simples — mostre uma vez por navegador
+    const box = document.getElementById('cookieBox');
+    if (box) {
+      const key = 'cookiesAcceptedV1';
+      if (!localStorage.getItem(key)) {
+        box.classList.add('show');
+      }
+      document.getElementById('acceptCookies')?.addEventListener('click', () => {
+        localStorage.setItem(key, '1');
+        box.remove();
+      });
+    }
+  </script>
+</body>
+</html>
