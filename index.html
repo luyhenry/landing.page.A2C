@@ -132,6 +132,111 @@
     .cookies { position: fixed; inset: auto 20px 20px 20px; background: #ffffff; border: 1px solid var(--border); border-radius: 12px; padding: 14px 16px; box-shadow: var(--shadow); max-width: 560px; display: none; }
     .cookies.show { display: grid; gap: 6px; }
     .cookies .actions { display: flex; gap: 10px; }
+
+
+
+/* ========================= CARROSSEL CLIENTES (roleta) ========================= */
+    :root {
+      --brand: #16a34a;
+      --text: #0f172a;
+      --border: rgba(2,6,23,0.08);
+      --radius: 14px;
+      --shadow: 0 8px 24px rgba(2,6,23,0.08);
+    }
+    .clientes {
+      margin-top: 18px;
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 18px;
+    }
+    .clientes .header {
+      display: flex; align-items: center; justify-content: space-between; gap: 12px;
+      margin-bottom: 10px;
+    }
+    .clientes .header h2 {
+      margin: 0; font-size: 20px; color: var(--text);
+    }
+    .carousel {
+      position: relative;
+      overflow: hidden;
+      border-radius: 12px;
+      background: #f8fafc;
+      border: 1px solid var(--border);
+    }
+    .carousel-track {
+      display: grid;
+      grid-auto-flow: column;
+      grid-auto-columns: 100%;
+      transition: transform .6s ease;
+      will-change: transform;
+    }
+    .slide {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 16px;
+      align-items: center;
+      padding: 22px;
+    }
+    .slide .logo-wrap {
+      display: grid; place-items: center;
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 12px;
+    }
+    .slide .logo-wrap img {
+      max-width: 100%; max-height: 96px; object-fit: contain;
+    }
+    .slide .meta .badge {
+      display: inline-block;
+      font-size: 12px; font-weight: 700; letter-spacing: .4px;
+      color: #0f172a; background: #dcfce7; border: 1px solid #bbf7d0;
+      padding: 4px 8px; border-radius: 999px;
+    }
+    .slide .meta h3 {
+      margin: 8px 0 4px; font-size: 18px; color: #0f172a;
+    }
+    .slide .meta p {
+      margin: 0; color: #334155; line-height: 1.4;
+    }
+    /* Seletores (roleta) */
+    .selectors {
+      display: flex; gap: 10px; flex-wrap: wrap; margin-top: 14px;
+    }
+    .selector {
+      display: flex; align-items: center; gap: 8px;
+      background: #f1f5f9; border: 1px solid var(--border); color: #0f172a;
+      border-radius: 999px; padding: 6px 10px;
+      cursor: pointer; user-select: none;
+      transition: transform .15s ease, background .2s ease, border-color .2s ease;
+    }
+    .selector:hover { transform: translateY(-2px); }
+    .selector[aria-selected="true"] {
+      background: #dcfce7; border-color: #86efac;
+    }
+    .selector img {
+      width: 22px; height: 22px; object-fit: contain; border-radius: 4px; background: #fff;
+    }
+    .carousel .nav {
+      position: absolute; inset: 0; display: flex; align-items: center; justify-content: space-between;
+      pointer-events: none;
+    }
+    .carousel .btn {
+      pointer-events: auto;
+      background: rgba(15,23,42,.7);
+      color: #fff; border: none; border-radius: 999px;
+      width: 36px; height: 36px; display: grid; place-items: center;
+      margin: 10px; cursor: pointer;
+    }
+    .carousel .btn:active { transform: scale(.98); }
+    @media (max-width: 680px) {
+      .slide { grid-template-columns: 1fr; text-align: center; }
+    }
+
+
+
   </style>
 </head>
 <body>
@@ -359,6 +464,8 @@
           <div class="num">{{INDICADOR_1_NUM}}</div>
           <div class="label">Unidades de saúde atendidas</div>
         </div>
+		
+		
         <div class="stat">
           <div class="num">{{INDICADOR_2_NUM}}</div>
           <div class="label">Serviços clínicos executados</div>
@@ -375,12 +482,13 @@
       <p class="muted" style="margin-top:10px;">*Atualize o período: {{INDICADORES_PERIODO}}</p>
     </div>
   </section>
-
+-->
   <!-- =========================================================
        CERTIFICAÇÕES / DIFERENCIAIS — use logos reais se tiver
        ========================================================= 
-  <section id="diferenciais" style="background: var(--bg-alt);">
-    <div class="container">
+	
+	<section id="diferenciais" style="background: var(--bg-alt);">
+		<div class="container">
       <div class="awards">
         <div class="highlight">
           <h3>Qualidade reconhecida</h3>
@@ -390,14 +498,102 @@
             <img src="{{CERT_2_LOGO}}" alt="Certificação 2" />
             <img src="{{CERT_3_LOGO}}" alt="Certificação 3" />
           </div>
-        </div>
-        <div class="highlight">
-          <h3>Depoimentos de clientes</h3>
-          <p class="muted">Adicione 1–3 citações curtas de clientes satisfeitos.</p>
-          <blockquote>“{{QUOTE_1}}” — <strong>{{QUOTE_1_AUTHOR}}</strong></blockquote>
-          <blockquote>“{{QUOTE_2}}” — <strong>{{QUOTE_2_AUTHOR}}</strong></blockquote>
-        </div>
+        </div> -->
+		
+		<!-- =========================================================
+       Depoimento — carrossel rotativo com seleção (roleta)
+       ========================================================= -->
+  <section id="clientes" class="container clientes" aria-label="Clientes">
+    <div class="header">
+      <h2>Depoimento</h2>
+      <button class="btn-refresh" id="clientes-toggle" style="display:none">Play/Pause</button>
+    </div>
+
+    <div class="carousel" data-autoplay="true" data-interval="5000" aria-roledescription="carousel">
+      <div class="carousel-track" id="clientes-track">
+        <!-- Slide 1 -->
+        <article class="slide" role="group" aria-roledescription="slide" aria-label="1 de 6">
+          <div class="logo-wrap">
+            <img src="images/logohv24.webp" alt="HV24">
+          </div>
+          <div class="meta">
+            <span class="badge">Hospital Veterinário</span>
+            <h3>HV24 — Rio Claro/SP</h3>
+            <p>parceiria de anos com a empresa</p>
+          </div>
+        </article>
+        <!-- Slide 2 -->
+        <article class="slide" role="group" aria-roledescription="slide" aria-label="2 de 6">
+          <div class="logo-wrap">
+            <img src="images/logobemequer.PNG" alt="Clínica Bem Me Quer">
+          </div>
+          <div class="meta">
+            <span class="badge">Clínica</span>
+            <h3>Bem Me Quer — Rio Claro/SP</h3>
+            <p>Sempre cuidando dos nossos equipamentos.</p>
+          </div>
+        </article>
+        <!-- Slide 3 -->
+        <article class="slide" role="group" aria-roledescription="slide" aria-label="3 de 6">
+          <div class="logo-wrap">
+            <img src="images/logoriovet.png" alt="RioVet">
+          </div>
+          <div class="meta">
+            <span class="badge">Clínica</span>
+            <h3>RioVet — Santana, Rio Claro/SP</h3>
+            <p>sempre nos auxiliando para solucionar nossos problemas</p>
+          </div>
+        </article>
+        <!-- Slide 4 -->
+        <article class="slide" role="group" aria-roledescription="slide" aria-label="4 de 6">
+          <div class="logo-wrap">
+            <img src="images/logoanymalys.jpg" alt="Anymalys">
+          </div>
+          <div class="meta">
+            <span class="badge">Laboratório</span>
+            <h3>Anymalys — Limeira/SP</h3>
+            <p>sempre de prontidão para nos atender</p>
+          </div>
+        </article>
+        <!-- Slide 5 -->
+        <article class="slide" role="group" aria-roledescription="slide" aria-label="5 de 6">
+          <div class="logo-wrap">
+            <img src="images/logoBICHOSOLTO.png" alt="Bicho Solto">
+          </div>
+          <div class="meta">
+            <span class="badge">Pet Shop</span>
+            <h3>Bicho Solto — Rio Claro/SP</h3>
+            <p>atendimento confiavel </p>
+          </div>
+        </article>
+        <!-- Slide 6 -->
+        <article class="slide" role="group" aria-roledescription="slide" aria-label="6 de 6">
+          <div class="logo-wrap">
+            <img src="images/logoentrepatasepelos.jpg" alt="Entre Patas e Pelos">
+          </div>
+          <div class="meta">
+            <span class="badge">Clínica</span>
+            <h3>Entre Patas E Pelos</h3>
+            <p>Sempre nos ajudou com a documentação da vigilancia sanitaria</p>
+          </div>
+        </article>
       </div>
+
+      <!-- Navegação (opcional) -->
+      <div class="nav" aria-hidden="false">
+        <button class="btn" id="prev" aria-label="Anterior">‹</button>
+        <button class="btn" id="next" aria-label="Próximo">›</button>
+      </div>
+    </div>
+
+    <!-- Seletores (roleta) -->
+    <div class="selectors" role="tablist" aria-label="Selecionar cliente">
+      <button class="selector" role="tab" aria-selected="true" data-index="0"><img src="images/logohv24.webp" alt="">HV24</button>
+      <button class="selector" role="tab" aria-selected="false" data-index="1"><img src="images/logobemequer.PNG" alt="">Bem me Quer</button>
+      <button class="selector" role="tab" aria-selected="false" data-index="2"><img src="images/logoriovet.png" alt="">RioVet</button>
+      <button class="selector" role="tab" aria-selected="false" data-index="3"><img src="images/logoanymalys.jpg" alt="">Anymalys</button>
+      <button class="selector" role="tab" aria-selected="false" data-index="4"><img src="images/logoBICHOSOLTO.png" alt="">Bicho Solto</button>
+      <button class="selector" role="tab" aria-selected="false" data-index="5"><img src="images/logoentrepatasepelos.jpg" alt="">Entre Patas E Pelos</button>
     </div>
   </section>
 
@@ -451,7 +647,7 @@
           Segunda-feira a Sexta-feira de 8h às 18h <br/>
           <strong>Comercial:</strong><a href="https://wa.me/5519999299580" target="_blank"> +55 (19) 9 9929-9580 </a><br/>
           <strong>E-mail:</strong> <a href="mailto:casturino.eng.eletrica@hotmail.com" target="_blank">casturino.eng.eletrica@hotmail.com</a><br/>
-          <strong>Endereço:</strong> Rua: Angelo Scaglia, Nº301, JD. Das Palmeiras, Ipeúna-SP
+          <strong>Endereço:</strong> Rua Angelo Scaglia, Nº301, JD. Das Palmeiras, Ipeúna-SP
         </p>
       </div>
       <div>
@@ -496,6 +692,63 @@
         box.remove();
       });
     }
+  </script>
+  <script>
+    (function(){
+      const track = document.getElementById('clientes-track');
+      if(!track) return;
+      const slides = Array.from(track.children);
+      const total = slides.length;
+      let index = 0;
+      let playing = true;
+      const intervalMs = parseInt(track.closest('.carousel').dataset.interval || '5000', 10);
+
+      function update(){
+        track.style.transform = `translateX(-${index * 100}%)`;
+        // aria labels
+        slides.forEach((s,i)=>{
+          s.setAttribute('aria-hidden', i===index ? 'false' : 'true');
+        });
+        document.querySelectorAll('.selectors .selector').forEach(btn=>{
+          btn.setAttribute('aria-selected', btn.dataset.index == index ? 'true' : 'false');
+        });
+      }
+      function next(){ index = (index + 1) % total; update(); }
+      function prev(){ index = (index - 1 + total) % total; update(); }
+
+      // Buttons
+      const btnNext = document.getElementById('next');
+      const btnPrev = document.getElementById('prev');
+      btnNext && btnNext.addEventListener('click', ()=>{ playing=false; next(); });
+      btnPrev && btnPrev.addEventListener('click', ()=>{ playing=false; prev(); });
+
+      // Selectors
+      document.querySelectorAll('.selectors .selector').forEach(btn=>{
+        btn.addEventListener('click', ()=>{
+          playing=false;
+          index = parseInt(btn.dataset.index, 10) || 0;
+          update();
+        });
+      });
+
+      // Autoplay
+      let timer = setInterval(()=>{ if(playing) next(); }, intervalMs);
+      // Pause on hover/focus for accessibility
+      const carousel = track.closest('.carousel');
+      ['mouseenter','focusin'].forEach(evt=>{
+        carousel.addEventListener(evt, ()=> playing=false);
+      });
+      ['mouseleave','focusout'].forEach(evt=>{
+        carousel.addEventListener(evt, ()=> playing=true);
+      });
+
+      // Keyboard support (left/right)
+      carousel.addEventListener('keydown', (e)=>{
+        if(e.key === 'ArrowRight'){ playing=false; next(); }
+        if(e.key === 'ArrowLeft'){ playing=false; prev(); }
+      });
+      update();
+    })();
   </script>
 </body>
 </html>
