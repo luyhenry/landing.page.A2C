@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Importância da Manutenção da Câmara de Vacinação (Schiller / Nobivac) | A2C Engenharia</title>
+  <meta name="description" content="Entenda por que a manutenção preventiva e a calibração periódica das câmaras de vacinação (Schiller / Nobivac) são vitais para a segurança das vacinas, a credibilidade da clínica e a redução de custos.">
+  <link rel="icon" href="favicon.ico" />
+  <!-- Se você tiver um CSS global do site, troque para o caminho correto e remova o <style> abaixo -->
+  <!-- <link rel="stylesheet" href="./assets/styles.css"> -->
+
+  <style>
+    :root{
+      --bg:#0f172a;          /* Azul escuro / slate-900 */
+      --card:#0b1228;        /* Escurecido */
+      --text:#e2e8f0;        /* Texto principal */
+      --muted:#94a3b8;       /* Texto secundário */
+      --brand:#38bdf8;       /* Acento (ciano) */
+      --brand-2:#22d3ee;     /* Acento 2 (ciano claro) */
+      --ok:#22c55e;          /* verde CTA */
+      --warn:#f59e0b;        /* destaque */
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius: 18px;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin:0; padding:0; background:linear-gradient(180deg, var(--bg), #0a0f22 60%, #080c1a 100%); color:var(--text); font: 16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji"; }
+    a { color: var(--brand); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+    header { position:sticky; top:0; z-index:10; background: rgba(8,12,26,.7); backdrop-filter: blur(8px); border-bottom: 1px solid rgba(255,255,255,.06); }
+    .nav { display:flex; align-items:center; justify-content:space-between; padding: 14px 0; }
+    .brand { display:flex; gap:12px; align-items:center; }
+    .brand .logo { width:36px; height:36px; border-radius:10px; background: radial-gradient(circle at 30% 30%, var(--brand-2), var(--brand)); box-shadow: 0 0 25px rgba(34,211,238,.35); }
+    .brand .title { font-weight:700; letter-spacing:.3px; }
+    .menu { display:flex; gap:18px; align-items:center; }
+    .menu a { color: var(--text); opacity:.9; font-weight:500; }
+    .cta { background:linear-gradient(135deg, var(--brand), var(--brand-2)); color:#001018; padding:10px 16px; border-radius:12px; font-weight:700; box-shadow: var(--shadow); border:0; }
+    .cta:hover { transform: translateY(-1px); transition: .15s ease-out; text-decoration: none; }
+
+    .hero { padding: 54px 0 18px; }
+    .hero .card { background: linear-gradient(180deg, rgba(56,189,248,.08), rgba(34,211,238,.03)); border:1px solid rgba(255,255,255,.08); border-radius: var(--radius); padding: 28px; box-shadow: var(--shadow); }
+    .hero h1 { margin:0 0 10px; font-size: clamp(24px, 3.6vw, 38px); line-height:1.2; }
+    .hero p { color: var(--muted); margin:8px 0 0; }
+
+    .breadcrumb { font-size: 14px; color: var(--muted); margin: 6px 0 22px; }
+    .breadcrumb a { color: var(--muted); }
+
+    .grid { display:grid; gap:22px; grid-template-columns: 1.15fr .85fr; }
+    @media (max-width: 900px) { .grid { grid-template-columns: 1fr; } }
+
+    .panel { background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.02)); border:1px solid rgba(255,255,255,.08); border-radius: var(--radius); box-shadow: var(--shadow); }
+    .panel .body { padding: 24px; }
+
+    h2 { margin: 12px 0 8px; font-size: clamp(20px, 2.2vw, 26px); }
+    h3 { margin: 18px 0 8px; font-size: 18px; color: #dbeafe; }
+    ul { margin: 8px 0 16px 18px; }
+    .tag { display:inline-block; padding:6px 10px; border-radius:999px; border:1px solid rgba(255,255,255,.14); margin: 6px 6px 0 0; font-size:12px; color: var(--muted); }
+
+    .facts { display:grid; gap:16px; grid-template-columns: repeat(3, 1fr); margin-top: 14px; }
+    .fact { background: linear-gradient(180deg, rgba(34,197,94,.12), rgba(34,197,94,.04)); border:1px solid rgba(255,255,255,.08); border-radius: 14px; padding: 14px; }
+    .fact b { display:block; font-size:22px; }
+    @media (max-width: 700px) { .facts { grid-template-columns: 1fr; } }
+
+    .faq details { border:1px solid rgba(255,255,255,.1); border-radius:12px; padding:14px 16px; margin:10px 0; background: rgba(255,255,255,.02); }
+    .faq summary { cursor:pointer; font-weight:600; }
+
+    .callout { display:flex; gap:18px; align-items:center; padding: 18px; border-radius: 14px; border:1px dashed rgba(34,211,238,.35); background: linear-gradient(90deg, rgba(34,211,238,.08), rgba(34,211,238,.02)); }
+    .callout .dot { width:14px; height:14px; border-radius:999px; background: radial-gradient(circle at 30% 30%, #fff, var(--brand)); box-shadow: 0 0 16px rgba(34,211,238,.6); }
+
+    footer { margin: 40px 0 20px; color: var(--muted); font-size:14px; text-align:center; }
+  </style>
+
+  <!-- SEO Schema -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Article",
+    "headline":"Importância da Manutenção da Câmara de Vacinação (Schiller / Nobivac)",
+    "description":"Por que a manutenção preventiva e a calibração periódica das câmaras de vacinação são vitais para a segurança dos imunobiológicos e a credibilidade da clínica.",
+    "author":{"@type":"Organization","name":"A2C Engenharia"},
+    "publisher":{"@type":"Organization","name":"A2C Engenharia"},
+    "inLanguage":"pt-BR"
+  }
+  </script>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <div class="title">A2C Engenharia</div>
+      </div>
+      <nav class="menu" aria-label="Menu primário">
+        <a href="./index.html">Início</a>
+        <a class="cta" href="https://wa.me/5519999299580" target="_blank" rel="noopener">Fale no WhatsApp</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="breadcrumb">
+      <a href="./index.html">Início</a> › <span>Artigos</span> › <strong>Manutenção de Câmara de Vacinação (Schiller / Nobivac)</strong>
+    </div>
+
+    <section class="hero">
+      <div class="card">
+        <h1>Por que manter sua <em>câmara de vacinação</em> (Schiller / Nobivac) em dia é vital para sua clínica</h1>
+        <p>Uma única oscilação térmica pode comprometer lotes inteiros de vacinas. Manutenção preventiva e calibração rastreável protegem seus pacientes, sua marca e seu caixa.</p>
+        <div style="margin-top:14px">
+          <span class="tag">Estabilidade 2–8 °C</span>
+          <span class="tag">Calibração rastreável</span>
+          <span class="tag">Plano preventivo</span>
+          <span class="tag">Atendimento especializado</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="grid" aria-label="Conteúdo principal">
+      <article class="panel">
+        <div class="body">
+          <h2>O papel da câmara de vacinação</h2>
+          <p>A câmara de vacinação — também chamada de <strong>chiller</strong> — mantém os imunobiológicos na faixa ideal, geralmente <strong>2 °C a 8 °C</strong>, evitando degradação por calor, congelamento e variações bruscas. É um elo crítico entre cadeia fria e aplicação segura.</p>
+
+          <h2>Riscos de falhas ou manutenções negligenciadas</h2>
+          <ul>
+            <li><strong>Perda de lotes</strong> por variação de temperatura não detectada.</li>
+            <li><strong>Paradas abruptas</strong> por falhas elétricas, ventilação obstruída ou sensores degradados.</li>
+            <li><strong>Custos emergenciais</strong> superiores ao investimento em prevenção, além de risco reputacional.</li>
+            <li><strong>Não conformidade</strong> com boas práticas e auditorias.</li>
+          </ul>
+
+          <div class="callout" role="note" aria-label="Recomendação">
+            <div class="dot" aria-hidden="true"></div>
+            <div>
+              <strong>Recomendação:</strong> estabeleça rotina de inspeção visual mensal e <strong>calibração com padrões rastreáveis</strong> a cada 6–12 meses, conforme uso e recomendações do fabricante.
+            </div>
+          </div>
+
+          <h2>Benefícios de um plano de manutenção</h2>
+          <ul>
+            <li><strong>Precisão térmica</strong> e estabilidade contínua.</li>
+            <li><strong>Vida útil estendida</strong> do equipamento.</li>
+            <li><strong>Detecção precoce</strong> de desgaste e falhas.</li>
+            <li><strong>Histórico técnico</strong> organizado para auditorias.</li>
+            <li><strong>Menos imprevistos</strong> e redução de custos com correções emergenciais.</li>
+          </ul>
+
+          <h2>O que verificar na manutenção ideal</h2>
+          <ul>
+            <li><strong>Sensores e controladores:</strong> teste e ajuste de termostatos; verificação de histerese e alarmes.</li>
+            <li><strong>Sistema elétrico:</strong> integridade de cabos, conexões, fusíveis e aterramento.</li>
+            <li><strong>Refrigeração e ar:</strong> limpeza de trocadores/serpentinas, ventiladores e filtros; checagem de fluxo de ar.</li>
+            <li><strong>Calibração:</strong> comparação com padrões rastreáveis (com certificado) e emissão de relatório.</li>
+            <li><strong>Estabilidade:</strong> ensaio com <em>datalogger</em> por horas/dias para validar variações internas.</li>
+            <li><strong>Componentes críticos:</strong> vedação de portas, ventiladores e sensores substituídos de forma preventiva.</li>
+          </ul>
+
+          <h2>Periodicidade sugerida</h2>
+          <ul>
+            <li><strong>Inspeção & limpeza:</strong> mensal ou bimestral, conforme ambiente e uso.</li>
+            <li><strong>Calibração & testes:</strong> a cada 6–12 meses.</li>
+            <li><strong>Preventiva completa:</strong> conforme plano contratado e horas de operação.</li>
+          </ul>
+
+          <h2>Por que escolher a A2C Engenharia</h2>
+          <ul>
+            <li>Equipe especializada em <strong>equipamentos veterinários</strong> e cadeia fria.</li>
+            <li>Procedimentos alinhados a <strong>boas práticas</strong> e normas aplicáveis.</li>
+            <li><strong>Resposta ágil</strong> e contratos com histórico técnico e relatórios claros.</li>
+            <li><strong>Calibração rastreável</strong> e orientação para uso e armazenamento adequados.</li>
+          </ul>
+
+          <div class="facts" aria-label="Indicadores de valor">
+            <div class="fact"><b>2–8 °C</b><span>Faixa típica de conservação</span></div>
+            <div class="fact"><b>6–12&nbsp;meses</b><span>Intervalo recomendado de calibração</span></div>
+            <div class="fact"><b>↓ custos</b><span>Menos emergências e perdas</span></div>
+          </div>
+
+          <h2>Conclusão</h2>
+          <p>Manter a câmara de vacinação Schiller/Nobivac em perfeitas condições <strong>não é opcional</strong>: é essencial para a eficácia das vacinas, a continuidade do atendimento e a credibilidade da sua clínica. Um plano preventivo <em>bem executado</em> evita perdas, reduz custos e traz previsibilidade.</p>
+        </div>
+      </article>
+
+      <aside class="panel" aria-label="Ações">
+        <div class="body">
+          <h3>Precisa de manutenção agora?</h3>
+          <p>Fale com a A2C Engenharia e agende uma visita técnica.</p>
+          <p>
+            <a class="cta" href="https://wa.me/5519999299580" target="_blank" rel="noopener">Solicitar manutenção</a>
+          </p>
+          <hr style="border-color:rgba(255,255,255,.08); margin:18px 0">
+          <h3>Checklist rápido</h3>
+          <ul>
+            <li>Alarme de temperatura testado</li>
+            <li>Porta Com a devida vedação</li>
+            <li>Ventilação e serpentinas limpas</li>
+            <li>Calibração válida e registrada</li>
+            
+          </ul>
+          <hr style="border-color:rgba(255,255,255,.08); margin:18px 0">
+          <h3>Dúvidas frequentes</h3>
+          <div class="faq">
+            <details>
+              <summary>Qual a periodicidade de calibração?</summary>
+              <p>De 6 a 12 meses, conforme uso, criticidade e recomendações do fabricante.</p>
+            </details>
+            <details>
+              <summary>Posso usar estabilizador comum?</summary>
+              <p>Recomenda-se avaliação elétrica específica e proteção adequada contra surtos/queda de tensão.</p>
+            </details>
+            <details>
+              <summary>Como registro a estabilidade?</summary>
+              <p>Use um datalogger confiável e mantenha o histórico salvo para auditorias.</p>
+            </details>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="panel" style="margin-top:22px">
+      <div class="body" style="display:flex; gap:18px; flex-wrap:wrap; align-items:center; justify-content:space-between">
+        <div>
+          <h3 style="margin:0">Pronto para elevar o padrão da sua cadeia fria?</h3>
+          <p style="margin:6px 0 0; color: var(--muted)">Conte com quem cuida da tecnologia que cuida da vida animal.</p>
+        </div>
+        <a class="cta" href="mailto:contato@a2cengenharia.com.br">contato@a2cengenharia.com.br</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © <span id="year"></span> A2C Engenharia · Todos os direitos reservados
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
