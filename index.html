@@ -58,9 +58,9 @@
     /* ========================= NAVBAR ========================= */
     header.site-header { position: sticky; top: 0; z-index: 50; background: rgba(255,255,255,.85); backdrop-filter: saturate(180%) blur(10px); border-bottom: 1px solid var(--border); }
     .nav { display: flex; align-items: center; justify-content: space-between; min-height: 72px; }
-    .brand { display: flex; align-items: center; gap: 12px; }
+    .brand { display: flex; align-items: center; gap: 8px; }
     .brand img.logo { width: 200px; height: 200px; border-radius: 8px; object-fit: cover; }
-    .brand .brand-text { font-weight: 700; letter-spacing: .2px; }
+    .brand .brand-text { font-weight: 700; letter-spacing: .px; }
     nav ul { list-style: none; display: flex; gap: 22px; margin: 0; padding: 0; }
     nav a { color: var(--text); font-weight: 500; }
 
@@ -250,7 +250,7 @@
     <div class="container nav">
       <div class="brand">
         <img class="logo" src="images/LOGO.png" alt="images/LOGO.png" />
-        <!-- <span class="brand-text">A2C Engenharia</span> -->
+        <!--<span class="brand-text">A2C Engenharia</span> -->
       </div>
 
       <label for="menu-toggle" class="menu-btn" aria-label="Abrir menu">☰ Menu</label>
@@ -265,7 +265,7 @@
           <li><a href="#contato">Contatos</a></li>
 		   <li><a href="#artigos">Artigos</a></li>
         </ul>
-        <a class="btn btn-primary" href="https://wa.me/5519999299580" target="_blank">Fale com especialistas</a>
+        <a class="btn btn-primary" href="https://wa.me/5519999299580?text=Olá, você poderia me auxiliar?" target="_blank">Fale com especialistas</a>
       </nav>
     </div>
   </header>
@@ -429,7 +429,6 @@
         <div class="card">
           <h3>Engenharia Clínica</h3>
           <ul>
-			<li>Contrato de manutenção</li> 
             <li>Gestão de tecnologias</li>
             <li>Manutenção de equipamentos médicos</li>
             <li>Metrologia</li>
@@ -443,7 +442,6 @@
             <li>Inspeção de sistemas elétricos e manutenções</li>
             <li>Geração e economia de energia</li>
             <li>Manutenção, reformas e ampliações</li>
-			<li>Contrato de manutenção</li> 
             <li>Planos de continuidade e segurança</li>
           </ul>
         </div>
@@ -637,7 +635,7 @@
         <h2>Tem algo para nos contar? Nós queremos ouvir.</h2>
         <p class="muted">Use o botão abaixo para falar com o nosso time. Também atendemos por telefone e e-mail.</p>
         <div style="display:flex; gap:12px; flex-wrap:wrap;">
-          <a class="btn btn-primary" href="https://wa.me/5519999299580" target="_blank"> Falar no WhatsApp</a>
+          <a class="btn btn-primary" href="https://wa.me/5519999299580?text=Olá, você poderia me auxiliar?" target="_blank"> Falar no WhatsApp</a>
           <a class="btn btn-outline" href="mailto:casturino.eng.eletrica@hotmail.com" target="_blank">Enviar e-mail</a>
           <a class="btn btn-outline" href="tel:19 999299580">Ligar agora</a>
         </div>
@@ -654,7 +652,7 @@
         <h3 style="margin-top:0; color:#fff;">Sede A2C Engenharia</h3>
         <p class="small">
           Segunda-feira a Sexta-feira de 8h às 18h <br/>
-          <strong>Comercial:</strong><a href="https://wa.me/5519999299580" target="_blank"> +55 (19) 9 9929-9580 </a><br/>
+          <strong>Comercial:</strong><a href="https://wa.me/5519999299580?text=Olá, você poderia me auxiliar?" target="_blank"> +55 (19) 9 9929-9580 </a><br/>
           <strong>E-mail:</strong> <a href="mailto:casturino.eng.eletrica@hotmail.com" target="_blank">casturino.eng.eletrica@hotmail.com</a><br/>
           <strong>Endereço:</strong> Rua Angelo Scaglia, Nº301, JD. Das Palmeiras, Ipeúna-SP
         </p>
@@ -663,8 +661,8 @@
         <h3 style="margin-top:0; color:#fff;">Conecte-se</h3>
         <p class="small">
           <a href="https://instagram.com/a2cengenharia/" target="_blank"> Instagram </a> ·
-          <a href="{{LINKEDIN}}">LinkedIn</a> ·
-          <a href="{{FACEBOOK}}">Facebook</a>
+          <!--<a href="{{LINKEDIN}}">LinkedIn</a> ·
+          <a href="{{FACEBOOK}}">Facebook</a> -->
         </p>
         <p class="small">© <span id="year"></span> A2C Engenharia. Todos os direitos reservados.</p>
       </div>
